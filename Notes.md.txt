@@ -1,0 +1,1 @@
+- Props from outside the component override local props 
