@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // The way to import PropTypes
 import PropTypes from 'prop-types';
 
-export class Navbar extends Component {
+class Navbar extends Component {
 	// Deafualt props
 	static defaultProps = {
 		title: 'Github Finder',
