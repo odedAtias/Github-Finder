@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class Search extends Component {
 	state = {
 		text: '',
+	};
+
+	static propTypes = {
+		searchUsers: PropTypes.func.isRequired,
 	};
 
 	onChange = event =>
@@ -10,6 +15,10 @@ export class Search extends Component {
 
 	onSubmit = event => {
 		event.preventDefault();
+		//Call to search command
+		this.props.searchUsers(this.state.text);
+		//Clean the input field after search
+		this.setState({ text: '' });
 	};
 
 	onSubmit;
