@@ -1,6 +1,6 @@
 import React from 'react';
 import UserItem from './UserItem';
-import Spinner from './Spinner';
+import Spinner from '../Spinner';
 
 const Users = ({ users, loading }) => {
 	if (loading) return <Spinner />;
