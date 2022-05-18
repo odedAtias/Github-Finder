@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function Navbar({ icon, title }) {
 	return (
-		<nav className='navbar bg-primary'>
+		<nav className='navbar btn-purple bg-primary'>
 			<h1>
 				<i className={icon} /> {title}
 			</h1>

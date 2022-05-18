@@ -19,13 +19,19 @@ class App extends Component {
 		const data = await res.json();
 		this.setState({ users: data.items, loading: false });
 	};
+	//Clear users from state
+	clearUsers = () => this.setState({ users: [], loading: false });
 
 	render() {
 		return (
 			<div className='App'>
 				<Navbar />
 				<div className='container'>
-					<Search searchUsers={this.searchUsers} />
+					<Search
+						searchUsers={this.searchUsers}
+						clearUsers={this.clearUsers}
+						showClear={this.state.users.length > 0 ? true : false}
+					/>
 					<Users loading={this.state.loading} users={this.state.users} />
 				</div>
 			</div>
