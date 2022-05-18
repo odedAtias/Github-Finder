@@ -303,7 +303,7 @@ img {
 .badge-danger,
 .alert-danger {
     background: var(--danger-color);
-    color: #fff;
+    color: #e2defa;
 }
 
 .btn-success,
@@ -311,21 +311,21 @@ img {
 .badge-success,
 .alert-success {
     background: var(--success-color);
-    color: #fff;
+    color: #e2defa;
 }
 
 .btn-white,
 .bg-white,
 .badge-white,
 .alert-white {
-    background: #fff;
+    background: #e2defa;
     color: #333;
     border: #ccc solid 1px;
 }
 
 .btn:hover {
-    opacity: 0.6;
     background-color: #9733EE;
+    color: #e2defa;
 }
 
 .bg-light,

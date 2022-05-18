@@ -16,6 +16,8 @@ export class Search extends Component {
 		this.setState({ [event.target.name]: event.target.value });
 	};
 
+	
+
 	onSubmit = event => {
 		event.preventDefault();
 		//Call to search command

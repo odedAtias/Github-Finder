@@ -19,7 +19,8 @@ class App extends Component {
 		const data = await res.json();
 		this.setState({ users: data.items, loading: false });
 	};
-	//Clear users from state
+
+	//Clear users After searching
 	clearUsers = () => this.setState({ users: [], loading: false });
 
 	render() {
