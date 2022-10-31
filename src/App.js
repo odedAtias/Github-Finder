@@ -1,5 +1,6 @@
 //Components imports
 import Navbar from './Components/Layout/Navbar';
+import Footer from './Components/Layout/Footer';
 //npm dependencies imports
 import { BrowserRouter, Route } from 'react-router-dom';
 
@@ -10,6 +11,7 @@ function App() {
 				<Navbar />
 			</div>
 			<main>Content</main>
+			<Footer />
 		</BrowserRouter>
 	);
 }
