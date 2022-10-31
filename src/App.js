@@ -1,8 +1,16 @@
+//Components imports
+import Navbar from './Components/Layout/Navbar';
+//npm dependencies imports
+import { BrowserRouter, Route } from 'react-router-dom';
+
 function App() {
 	return (
-		<div>
-			<h1>Hello From React</h1>
-		</div>
+		<BrowserRouter>
+			<div className='flex flex-col justify-between h-screen'>
+				<Navbar />
+			</div>
+			<main>Content</main>
+		</BrowserRouter>
 	);
 }
 
