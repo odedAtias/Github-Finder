@@ -7,11 +7,13 @@ import { BrowserRouter, Route } from 'react-router-dom';
 function App() {
 	return (
 		<BrowserRouter>
-			<div className='flex flex-col justify-between h-screen'>
-				<Navbar />
+			<div className='h-screen'>
+				<div className='flex flex-col justify-between'>
+					<Navbar />
+				</div>
+				<main className='h-5/6'>Content</main>
+				<Footer />
 			</div>
-			<main>Content</main>
-			<Footer />
 		</BrowserRouter>
 	);
 }
