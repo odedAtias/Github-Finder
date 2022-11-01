@@ -14,7 +14,7 @@ function App() {
 				<div className='flex flex-col justify-between'>
 					<Navbar />
 				</div>
-				<main className='h-5/6 grid place-content-center'>
+				<main className='h-5/6 grid place-content-center p-5 lg:p-0'>
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/about' element={<About />} />
