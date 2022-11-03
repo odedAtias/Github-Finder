@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const Navbar = ({ title }) => {
 	return (
-		<nav className='navbar bg-primary text-primary-content'>
+		<nav className='navbar mb-12 shadow-lg bg-primary text-primary-content'>
 			<div className='container mx-auto'>
 				<div className='flex-none px-2 mx-2'>
 					<BsGithub className='inline pr-2 text-4xl' />

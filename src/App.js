@@ -1,20 +1,19 @@
 //Components imports
 import Navbar from './Components/Layout/Navbar';
 import Footer from './Components/Layout/Footer';
-import About from './Components/Pages/About';
-import Home from './Components/Pages/Home';
-import NotFound from './Components/Pages/NotFound';
+import About from './Pages/About';
+import Home from './Pages/Home';
+import NotFound from './Pages/NotFound';
 //npm dependencies imports
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
 	return (
 		<BrowserRouter>
-			<div className='h-screen'>
-				<div className='flex flex-col justify-between'>
-					<Navbar />
-				</div>
-				<main className='h-5/6 grid place-content-center p-5 lg:p-0'>
+			<div className='flex flex-col justify-between h-screen'>
+				<Navbar />
+
+				<main className='container mx-auto px-3 pb-12'>
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/about' element={<About />} />
