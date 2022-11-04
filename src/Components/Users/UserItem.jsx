@@ -12,7 +12,7 @@ const UserItem = ({ user: { login, avatar_url } }) => {
 					</div>
 				</div>
 			</div>
-			<div className='mx-auto text-center'>
+			<div className='mx-auto text-center pb-3'>
 				<h2 className='card-title'>{login}</h2>
 				<Link
 					className='text-base-content text-opacity-40'
