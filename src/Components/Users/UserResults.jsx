@@ -8,12 +8,7 @@ import GithubContext from '../../Context/Github/GithubContext';
 
 function UserResults() {
 	//Destruct from the context
-	const { users, loading, fetchData } = useContext(GithubContext);
-
-	useEffect(() => {
-		fetchData();
-	}, []);
-
+	const { users, loading } = useContext(GithubContext);
 	if (!loading)
 		return (
 			<div className='grid grid-cols-1 gap-10 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 '>
