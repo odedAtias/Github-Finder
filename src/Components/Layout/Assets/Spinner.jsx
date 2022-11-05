@@ -1,5 +1,5 @@
 const Spinner = () => {
-	return <div className='lds-dual-ring grid'></div>;
+	return <div className='lds-dual-ring'></div>;
 };
 
 export default Spinner;

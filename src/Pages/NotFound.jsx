@@ -10,7 +10,7 @@ const NotFound = () => {
 					<p className='text-4xl mb-8'>404 - Page not found</p>
 					<Link
 						to='/'
-						className='btn btn-active rounded-btn rounded-xl btn-xs sm:btn-sm md:btn-md lg:btn-lg'>
+						className='btn btn-active rounded-xl btn-xs sm:btn-sm md:btn-md lg:btn-lg'>
 						<FaHome className='mr-4' />
 						Back to Home
 						<FaHome className='ml-4' />
