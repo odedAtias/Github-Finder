@@ -1,14 +1,21 @@
 //Hooks imports
-import { createContext, useState } from 'react';
+import { createContext, useReducer } from 'react';
 //Npm dependencies imports
 import axios from 'axios';
+//Reducers imports
+import GithubReducer from './GithubReducer';
 
 const GithubContext = createContext();
 
 export const GithubProvider = ({ children }) => {
-	//Context state
-	const [users, setUsers] = useState([]);
-	const [loading, setLoading] = useState(true);
+	//Gloabl state
+	const initialState = {
+		users: [],
+		loading: true,
+	};
+
+	const [state, dispatch] = useReducer(GithubReducer, initialState);
+
 	//Context functions
 	const fetchData = async () => {
 		const url = `${process.env.REACT_APP_GITHUB_URL}/users`;
@@ -16,12 +23,12 @@ export const GithubProvider = ({ children }) => {
 			`${url}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
 		);
 		const data = response.data;
-		setUsers(data);
-		setLoading(false);
+		dispatch({ type: 'GET_USERS', payload: data });
 	};
 
 	return (
-		<GithubContext.Provider value={{ users, loading, fetchData }}>
+		<GithubContext.Provider
+			value={{ users: state.users, loading: state.loading, fetchData }}>
 			{children}
 		</GithubContext.Provider>
 	);
