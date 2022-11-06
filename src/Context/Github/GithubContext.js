@@ -17,14 +17,18 @@ export const GithubProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(GithubReducer, initialState);
 
 	// Get initial users (for testing)
-	const fetchData = async () => {
+	const searchUsers = async text => {
 		setLoading();
-		const url = `${process.env.REACT_APP_GITHUB_URL}/users`;
-		const response = await axios.get(
-			`${url}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-		);
-		const data = response.data;
-		dispatch({ type: 'GET_USERS', payload: data });
+		const params = new URLSearchParams({
+			q: text,
+			client_id: process.env.REACT_APP_GITHUB_CLIENT_ID,
+			client_secret: process.env.REACT_APP_GITHUB_CLIENT_SECRET,
+		});
+		const url = `${process.env.REACT_APP_GITHUB_URL}/search/users?${params}}`;
+		const response = await axios.get(`${url}`);
+		const { items } = response.data;
+		console.log(items);
+		dispatch({ type: 'GET_USERS', payload: items });
 	};
 
 	//Set Loading
@@ -34,7 +38,7 @@ export const GithubProvider = ({ children }) => {
 
 	return (
 		<GithubContext.Provider
-			value={{ users: state.users, loading: state.loading, fetchData }}>
+			value={{ users: state.users, loading: state.loading, searchUsers }}>
 			{children}
 		</GithubContext.Provider>
 	);

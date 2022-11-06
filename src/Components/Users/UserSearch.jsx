@@ -5,7 +5,7 @@ import Joi from 'joi-browser';
 
 const UserSearch = () => {
 	const [text, setText] = useState('');
-	const { users } = useContext(GithubContext);
+	const { users, searchUsers } = useContext(GithubContext);
 
 	//Joi Validation Schema
 	const schema = Joi.object({
@@ -20,17 +20,18 @@ const UserSearch = () => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		//Validation
-		const { error } = Joi.validate({ text }, schema);
+		const { error } = Joi.validate({ text: text }, schema);
 		if (error) alert(error.details[0].message);
 		else {
 			//Search users
-			console.log('search');
+			searchUsers(text);
+			setText('');
 		}
 	};
 
 	return (
-		<div className='grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 mb-8 gap-8'>
-			<div className='col-span-1'>
+		<div className='grid grid-cols-2 grid-flow-col xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 mb-8 gap-8'>
+			<div className='col-span-2'>
 				<form onSubmit={handleSubmit}>
 					<div className='form-control'>
 						<div className='relative'>
@@ -43,7 +44,7 @@ const UserSearch = () => {
 							/>
 							<button
 								type='submit'
-								className='absolute top-0 right-0 rounded-l-none w-1/4 btn bg-gray-300 border-none rounded-xl hover:bg-gray-300'>
+								className='absolute top-0 right-0 w-20 pr-0 rounded-l-none btn bg-gray-300 border-none rounded-xl hover:bg-gray-300'>
 								<FiSearch className='text-neutral' size={16} />
 							</button>
 						</div>
@@ -53,7 +54,7 @@ const UserSearch = () => {
 
 			{users.length > 0 && (
 				<div>
-					<button className='btn btn-active rounded-xl hover:bg-gray-300 hover:text-neutral border-none'>
+					<button className='btn btn-active rounded-xl hover:bg-gray-300 hover:text-neutral border-none w-full'>
 						Clear
 					</button>
 				</div>
