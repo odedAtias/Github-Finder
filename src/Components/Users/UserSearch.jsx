@@ -5,7 +5,7 @@ import Joi from 'joi-browser';
 
 const UserSearch = () => {
 	const [text, setText] = useState('');
-	const { users, searchUsers } = useContext(GithubContext);
+	const { users, searchUsers, clearUsers } = useContext(GithubContext);
 
 	//Joi Validation Schema
 	const schema = Joi.object({
@@ -27,6 +27,10 @@ const UserSearch = () => {
 			searchUsers(text);
 			setText('');
 		}
+	};
+
+	const handleClear = () => {
+		clearUsers();
 	};
 
 	return (
@@ -54,7 +58,9 @@ const UserSearch = () => {
 
 			{users.length > 0 && (
 				<div>
-					<button className='btn btn-active rounded-xl hover:bg-gray-300 hover:text-neutral border-none w-full'>
+					<button
+						onClick={handleClear}
+						className='btn btn-active rounded-xl hover:bg-gray-300 hover:text-neutral border-none w-full'>
 						Clear
 					</button>
 				</div>

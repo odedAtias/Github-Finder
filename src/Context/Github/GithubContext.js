@@ -27,18 +27,26 @@ export const GithubProvider = ({ children }) => {
 		const url = `${process.env.REACT_APP_GITHUB_URL}/search/users?${params}}`;
 		const response = await axios.get(`${url}`);
 		const { items } = response.data;
-		console.log(items);
 		dispatch({ type: 'GET_USERS', payload: items });
 	};
 
 	//Set Loading
 	const setLoading = () => {
-		dispatch({ type: 'LOADING' });
+		dispatch({ type: 'LOAD_USERS' });
+	};
+
+	const clearUsers = () => {
+		dispatch({ type: 'CLEAR_USERS' });
 	};
 
 	return (
 		<GithubContext.Provider
-			value={{ users: state.users, loading: state.loading, searchUsers }}>
+			value={{
+				users: state.users,
+				loading: state.loading,
+				searchUsers,
+				clearUsers,
+			}}>
 			{children}
 		</GithubContext.Provider>
 	);
