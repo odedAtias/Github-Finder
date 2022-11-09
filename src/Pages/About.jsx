@@ -12,7 +12,7 @@ const About = () => {
 					<p className='py-4 font-bold'>Version 1.0.0</p>
 					<a
 						href='https://github.com/odedAtias/Github-Finder'
-						className='btn btn-active rounded-xl btn-xs sm:btn-sm md:btn-md lg:btn-lg'>
+						className='btn btn-sm hover:bg-gray-300 border-none hover:text-neutral rounded-xl sm:btn-sm md:btn-md'>
 						Learn More
 					</a>
 				</div>
