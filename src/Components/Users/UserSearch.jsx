@@ -1,11 +1,19 @@
-import { FiSearch } from 'react-icons/fi';
+// Hooks imports
 import { useState, useContext } from 'react';
-import GithubContext from '../../Context/Github/GithubContext';
+// npm dependencies imports
+import { FiSearch } from 'react-icons/fi';
 import Joi from 'joi-browser';
+// Contexts imports
+import GithubContext from '../../Context/Github/GithubContext';
+import AlertContext from '../../Context/Alert/AlertContext';
 
+// UserSearch Component
 const UserSearch = () => {
+	// UserSearch state
 	const [text, setText] = useState('');
+	// UserSearch contexts data
 	const { users, searchUsers, clearUsers } = useContext(GithubContext);
+	const { setAlert } = useContext(AlertContext);
 
 	//Joi Validation Schema
 	const schema = Joi.object({
@@ -21,7 +29,7 @@ const UserSearch = () => {
 		e.preventDefault();
 		//Validation
 		const { error } = Joi.validate({ text: text }, schema);
-		if (error) alert(error.details[0].message);
+		if (error) setAlert(error.details[0].message, 'error');
 		else {
 			//Search users
 			searchUsers(text);

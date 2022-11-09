@@ -1,4 +1,4 @@
-const GithubReducer = (state, action) => {
+const githubReducer = (state, action) => {
 	switch (action.type) {
 		// Case of fetching data from the github api
 		case 'GET_USERS':
@@ -17,10 +17,15 @@ const GithubReducer = (state, action) => {
 				...state,
 				users: [],
 			};
-
+		case 'GET_USER':
+			return {
+				...state,
+				user: action.payload,
+				loading: false,
+			};
 		default:
 			return state;
 	}
 };
 
-export default GithubReducer;
+export default githubReducer;
