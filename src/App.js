@@ -19,8 +19,7 @@ function App() {
 				<BrowserRouter>
 					<div className='flex flex-col justify-between h-screen'>
 						<Navbar />
-
-						<main className='container mx-auto px-16 p-12'>
+						<main className='container mx-auto px-16 py-8'>
 							<Alert />
 							<Routes>
 								<Route path='/' element={<Home />} />
