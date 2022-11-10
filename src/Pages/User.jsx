@@ -21,6 +21,8 @@ const User = () => {
 	useEffect(() => {
 		getUser(params.login);
 		getUserRepos(params.login);
+		// To remove the warnings of external functions calling in useEffect
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	// User data
@@ -74,7 +76,7 @@ const User = () => {
 					</div>
 					{/* User badges */}
 					<div className='col-span-2'>
-						<div className='mb-10'>
+						<div className='xl:mb-10'>
 							<h1 className='text-3xl card-title'>
 								{name}
 								<div className='ml-2 mr-1 badge badge-success'>{type}</div>
@@ -96,21 +98,19 @@ const User = () => {
 							</div>
 						</div>
 						{/* User optional details */}
-						<div className='w-full rounded-lg shadow-xl bg-slate-200 stats'>
-							{/* Optional details - location */}
-							{location && (
+						{location && blog && twitter_username && (
+							<div className='w-full rounded-lg shadow-xl bg-slate-200 stats mt-10'>
+								{/* Optional details - location */}
 								<div className='stat'>
 									<div className='stat-title text-xs xl:text-sm'>Location</div>
 									<div className='text-sm xl:text-lg stat-value'>
 										{location}
 									</div>
 								</div>
-							)}
-							{/* Optional details - blog */}
-							{blog && (
+
+								{/* Optional details - blog */}
 								<div className='stat'>
 									<div className='stat-title text-xs xl:text-sm'>Blog</div>
-
 									<a
 										href={`https:${blog}`}
 										target='_blank'
@@ -119,9 +119,8 @@ const User = () => {
 										{blog}
 									</a>
 								</div>
-							)}
-							{/* Optional details - twitter username */}
-							{twitter_username && (
+
+								{/* Optional details - twitter username */}
 								<div className='stat'>
 									<div className='text-xs xl:text-sm stat-title'>
 										{twitter_username}
@@ -134,12 +133,12 @@ const User = () => {
 										{twitter_username}
 									</a>
 								</div>
-							)}
-						</div>
+							</div>
+						)}
 					</div>
 				</div>
 				{/* User stats */}
-				<div className='w-full mb-6 rounded-lg shadow-md bg-slate-200 stats'>
+				<div className='w-full mb-8 rounded-lg shadow-md bg-slate-200 stats'>
 					{/* Followers */}
 					<div className='stat'>
 						<div className='stat-figure text-purple-900'>

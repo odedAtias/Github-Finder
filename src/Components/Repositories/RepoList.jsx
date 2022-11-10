@@ -1,5 +1,7 @@
 // Npm dependencies
 import PropTypes from 'prop-types';
+// Components imports
+import RepoItem from './RepoItem';
 
 const RepoList = ({ repos }) => {
 	return (
@@ -11,7 +13,7 @@ const RepoList = ({ repos }) => {
 				</h2>
 				{/*  */}
 				{repos.map(repo => (
-					<h3>{repo.name}</h3>
+					<RepoItem key={repo.id} repo={repo} />
 				))}
 			</div>
 		</div>
