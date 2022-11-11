@@ -6,13 +6,15 @@ import Joi from 'joi-browser';
 // Contexts imports
 import GithubContext from '../../Context/Github/GithubContext';
 import AlertContext from '../../Context/Alert/AlertContext';
+// Action functions imports
+import { searchUsers } from '../../Context/Github/GithubActions';
 
 // UserSearch Component
 const UserSearch = () => {
 	// UserSearch state
 	const [text, setText] = useState('');
 	// UserSearch contexts data
-	const { users, searchUsers, clearUsers } = useContext(GithubContext);
+	const { users, clearUsers, dispatch } = useContext(GithubContext);
 	const { setAlert } = useContext(AlertContext);
 
 	//Joi Validation Schema
@@ -25,14 +27,17 @@ const UserSearch = () => {
 		setText(input.value);
 	};
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault();
 		//Validation
 		const { error } = Joi.validate({ text: text }, schema);
 		if (error) setAlert(error.details[0].message, 'error');
 		else {
+			// Loading
+			dispatch({type: 'LOAD_USERS'})
 			//Search users
-			searchUsers(text);
+			const users = await searchUsers(text);
+			dispatch({type: 'GET_USERS', payload: users})
 			setText('');
 		}
 	};

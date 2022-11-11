@@ -19,20 +19,6 @@ export const GithubProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(githubReducer, initialState);
 	const url = `${process.env.REACT_APP_GITHUB_URL}`;
 
-	// search users
-	const searchUsers = async text => {
-		setLoading();
-		const params = new URLSearchParams({
-			q: text,
-			client_id: process.env.REACT_APP_GITHUB_CLIENT_ID,
-			client_secret: process.env.REACT_APP_GITHUB_CLIENT_SECRET,
-		});
-		const response = await axios.get(`${url}/search/users?${params}`);
-
-		const { items } = response.data;
-		dispatch({ type: 'GET_USERS', payload: items });
-	};
-
 	//Get signle user
 	const getUser = async login => {
 		setLoading();
@@ -75,11 +61,8 @@ export const GithubProvider = ({ children }) => {
 	return (
 		<GithubContext.Provider
 			value={{
-				users: state.users,
-				loading: state.loading,
-				user: state.user,
-				repos: state.repos,
-				searchUsers,
+				...state,
+				dispatch,
 				clearUsers,
 				getUser,
 				getUserRepos,
