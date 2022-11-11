@@ -14,7 +14,7 @@ const UserSearch = () => {
 	// UserSearch state
 	const [text, setText] = useState('');
 	// UserSearch contexts data
-	const { users, clearUsers, dispatch } = useContext(GithubContext);
+	const { users, dispatch } = useContext(GithubContext);
 	const { setAlert } = useContext(AlertContext);
 
 	//Joi Validation Schema
@@ -34,16 +34,16 @@ const UserSearch = () => {
 		if (error) setAlert(error.details[0].message, 'error');
 		else {
 			// Loading
-			dispatch({type: 'LOAD_USERS'})
+			dispatch({ type: 'LOAD_USERS' });
 			//Search users
 			const users = await searchUsers(text);
-			dispatch({type: 'GET_USERS', payload: users})
+			dispatch({ type: 'GET_USERS', payload: users });
 			setText('');
 		}
 	};
 
 	const handleClear = () => {
-		clearUsers();
+		dispatch({ type: 'CLEAR_USERS' });
 	};
 
 	return (

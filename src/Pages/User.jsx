@@ -9,19 +9,23 @@ import Spinner from '../Components/Layout/Assets/Spinner';
 import RepoList from '../Components/Repositories/RepoList';
 // Contexts imports
 import GithubContext from '../Context/Github/GithubContext';
+// Action functions imports
+import { getUserAndRepos } from '../Context/Github/GithubActions';
 
 const User = () => {
-	const { getUser, user, loading, repos, getUserRepos } =
-		useContext(GithubContext);
+	const { user, loading, repos, dispatch } = useContext(GithubContext);
 
 	//The way to getting route params in react-router v6
 	const params = useParams();
 
 	//Fetching the data of the user
 	useEffect(() => {
-		getUser(params.login);
-		getUserRepos(params.login);
-		// To remove the warnings of external functions calling in useEffect
+		dispatch({ type: 'LOAD_USERS' });
+		const getUSerData = async () => {
+			const userData = await getUserAndRepos(params.login);
+			dispatch({ type: 'GET_USER_AND_REPOS', payload: userData });
+		};
+		getUSerData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
