@@ -14,10 +14,8 @@ import { getUserAndRepos } from '../Context/Github/GithubActions';
 
 const User = () => {
 	const { user, loading, repos, dispatch } = useContext(GithubContext);
-
 	//The way to getting route params in react-router v6
 	const params = useParams();
-
 	//Fetching the data of the user
 	useEffect(() => {
 		dispatch({ type: 'LOAD_USERS' });

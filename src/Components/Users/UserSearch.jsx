@@ -1,7 +1,6 @@
 // Hooks imports
 import { useState, useContext } from 'react';
 // npm dependencies imports
-import { FiSearch } from 'react-icons/fi';
 import Joi from 'joi-browser';
 // Contexts imports
 import GithubContext from '../../Context/Github/GithubContext';
@@ -10,6 +9,7 @@ import AlertContext from '../../Context/Alert/AlertContext';
 import { searchUsers } from '../../Context/Github/GithubActions';
 // Component imports
 import ClearButton from '../Layout/Assets/ClearButton';
+import SearchButton from '../Layout/Assets/SearchButton';
 
 // UserSearch Component
 const UserSearch = () => {
@@ -54,6 +54,7 @@ const UserSearch = () => {
 				<form onSubmit={handleSubmit}>
 					<div className='form-control'>
 						<div className='relative'>
+							{/* Search Input */}
 							<input
 								onChange={handleChange}
 								type='text'
@@ -61,11 +62,8 @@ const UserSearch = () => {
 								placeholder='search'
 								value={text}
 							/>
-							<button
-								type='submit'
-								className='absolute top-0 right-0 w-20 pr-0 rounded-l-none btn bg-gray-300 border-none rounded-xl hover:bg-gray-300'>
-								<FiSearch className='text-neutral' size={16} />
-							</button>
+							{/* Search Button */}
+							<SearchButton />
 						</div>
 					</div>
 				</form>
