@@ -8,6 +8,8 @@ import GithubContext from '../../Context/Github/GithubContext';
 import AlertContext from '../../Context/Alert/AlertContext';
 // Action functions imports
 import { searchUsers } from '../../Context/Github/GithubActions';
+// Component imports
+import ClearButton from '../Layout/Assets/ClearButton';
 
 // UserSearch Component
 const UserSearch = () => {
@@ -68,16 +70,8 @@ const UserSearch = () => {
 					</div>
 				</form>
 			</div>
-
-			{users.length > 0 && (
-				<div>
-					<button
-						onClick={handleClear}
-						className='btn btn-active rounded-xl hover:bg-gray-300 hover:text-neutral border-none w-full'>
-						Clear
-					</button>
-				</div>
-			)}
+			{/* Clear Button */}
+			{users.length > 0 && <ClearButton onClear={handleClear} />}
 		</div>
 	);
 };

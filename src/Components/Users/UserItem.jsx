@@ -22,6 +22,7 @@ const UserItem = ({ user: { login, avatar_url } }) => {
 	);
 };
 
+//PropTypes
 UserItem.PropType = {
 	user: PropType.object.isRequired,
 };
