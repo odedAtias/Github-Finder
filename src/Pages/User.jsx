@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 import Spinner from '../Components/Layout/Assets/Spinner';
 import RepoList from '../Components/Repositories/RepoList';
 import UserStats from '../Components/Users/UserStats';
+import UserDetails from '../Components/Users/UserDetails';
+import UserImage from '../Components/Users/UserImage';
 
 //	Contexts imports
 import GithubContext from '../Context/Github/GithubContext';
@@ -62,87 +64,25 @@ const User = () => {
 					{/* Link to our home page */}
 					<Link
 						to='/'
-						className='btn btn-outline rounded-xl hover:bg-gray-300 hover:text-neutral border-none'>
+						className='font-bold text-blue-600 hover:text-blue-900 rounded-xl border-none'>
 						Back To Search
 					</Link>
 				</div>
 
 				<div className='grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 mb-8 md:gap-8'>
-					<div className='custom-card-image shadow-xl mb-6 md:mb-0  rounded-xl'>
-						<div className='card opacity-80 rounded-xl image-full h-full'>
-							{/* User Image */}
-							<figure>
-								<img src={avatar_url} alt='avatar' />
-							</figure>
-							{/* User heading */}
-							<div className='card-body justify-end'>
-								<h2 className='card-title mb-0'>{name}</h2>
-								<h6>{login}</h6>
-							</div>
-						</div>
-					</div>
+					{/* User image */}
+					<UserImage avatar_url={avatar_url} login={login} name={name} />
 					{/* User badges */}
-					<div className='col-span-2'>
-						<div className='xl:mb-10'>
-							<h1 className='text-3xl card-title'>
-								{name}
-								<div className='ml-2 mr-1 badge badge-success'>{type}</div>
-								{hireable && (
-									<div className='mx-1 badge badge-info'>Hireable</div>
-								)}
-							</h1>
-							{/* User bio */}
-							<p className='mt-2'>{bio}</p>
-							{/* User link to github profile */}
-							<div className='mt-6 card-actions'>
-								<a
-									href={html_url}
-									target='_blank'
-									rel='noreferrer'
-									className='btn btn-primary rounded-xl'>
-									Visit Github profile
-								</a>
-							</div>
-						</div>
-						{/* User optional details */}
-						{location && blog && twitter_username && (
-							<div className='w-full rounded-lg shadow-xl bg-slate-200 stats mt-10'>
-								{/* Optional details - location */}
-								<div className='stat'>
-									<div className='stat-title text-xs xl:text-sm'>Location</div>
-									<div className='text-sm xl:text-lg stat-value'>
-										{location}
-									</div>
-								</div>
-
-								{/* Optional details - blog */}
-								<div className='stat'>
-									<div className='stat-title text-xs xl:text-sm'>Blog</div>
-									<a
-										href={`https:${blog}`}
-										target='_blank'
-										rel='noreferrer'
-										className='text-sm xl:text-lg stat-value'>
-										{blog}
-									</a>
-								</div>
-
-								{/* Optional details - twitter username */}
-								<div className='stat'>
-									<div className='text-xs xl:text-sm stat-title'>
-										{twitter_username}
-									</div>
-									<a
-										href={`https:${twitter_username}`}
-										target='_blank'
-										rel='noreferrer'
-										className='text-sm xl:text-lg stat-value'>
-										{twitter_username}
-									</a>
-								</div>
-							</div>
-						)}
-					</div>
+					<UserDetails
+						name={name}
+						type={type}
+						hireable={hireable}
+						html_url={html_url}
+						location={location}
+						blog={blog}
+						twitter_username={twitter_username}
+						bio={bio}
+					/>
 				</div>
 				{/* User stats */}
 				<UserStats
