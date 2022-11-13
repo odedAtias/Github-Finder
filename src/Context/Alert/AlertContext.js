@@ -1,8 +1,11 @@
+//	Hooks imports
 import { createContext, useReducer } from 'react';
+//	Reducers imports
 import alertReducer from './AlertReducer';
 
 const AlertContext = createContext();
 
+//	Alert context provider
 export const AlertProvider = ({ children }) => {
 	const initialState = null;
 	const [state, dispatch] = useReducer(alertReducer, initialState);

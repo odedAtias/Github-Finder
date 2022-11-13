@@ -1,3 +1,4 @@
+//	Github Reducer
 const githubReducer = (state, action) => {
 	switch (action.type) {
 		// Case of fetching data from the github api
