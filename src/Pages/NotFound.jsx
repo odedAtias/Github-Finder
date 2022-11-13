@@ -1,6 +1,8 @@
+//	Npm dependencies imports
 import { FaHome } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
+//	NotFound component
 const NotFound = () => {
 	return (
 		<div className='hero'>
