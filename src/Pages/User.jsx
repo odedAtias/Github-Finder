@@ -1,22 +1,27 @@
-// Hooks imports
+//	Hooks imports
 import { useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-// Npm dependencies
-import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa';
+
+//	Npm dependencies
 import { Link } from 'react-router-dom';
-//Components imports
+
+//	Components imports
 import Spinner from '../Components/Layout/Assets/Spinner';
 import RepoList from '../Components/Repositories/RepoList';
-// Contexts imports
+import UserStats from '../Components/Users/UserStats';
+
+//	Contexts imports
 import GithubContext from '../Context/Github/GithubContext';
-// Action functions imports
+
+//	Action functions imports
 import { getUserAndRepos } from '../Context/Github/GithubActions';
 
+// User component
 const User = () => {
 	const { user, loading, repos, dispatch } = useContext(GithubContext);
-	//The way to getting route params in react-router v6
+	//	The way to getting route params in react-router v6
 	const params = useParams();
-	//Fetching the data of the user
+	//	Fetching the data of the user
 	useEffect(() => {
 		dispatch({ type: 'LOAD_USERS' });
 		const getUSerData = async () => {
@@ -27,7 +32,7 @@ const User = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	// User data
+	//	User data
 	const {
 		name,
 		type,
@@ -45,7 +50,7 @@ const User = () => {
 		hireable,
 	} = user;
 
-	//Loading case
+	//	Loading case
 	if (loading) {
 		return <Spinner />;
 	}
@@ -140,49 +145,13 @@ const User = () => {
 					</div>
 				</div>
 				{/* User stats */}
-				<div className='w-full mb-8 rounded-lg shadow-md bg-slate-200 stats'>
-					{/* Followers */}
-					<div className='stat'>
-						<div className='stat-figure text-purple-900'>
-							<FaUsers className='text-3xl md:text-5xl' />
-						</div>
-						<div className='stat-title pr-5'>Followers</div>
-						<div className='stat-value pr-5 text-2xl md:text-3xl'>
-							{followers}
-						</div>
-					</div>
-					{/* Following */}
-					<div className='stat'>
-						<div className='stat-figure text-purple-900'>
-							<FaUserFriends className='text-3xl md:text-5xl' />
-						</div>
-						<div className='stat-title pr-5'>Following</div>
-						<div className='stat-value pr-5 text-2xl md:text-3xl'>
-							{following}
-						</div>
-					</div>
-					{/* Public repos */}
-					<div className='stat'>
-						<div className='stat-figure text-purple-900'>
-							<FaCodepen className='text-3xl md:text-5xl' />
-						</div>
-						<div className='stat-title pr-5'>Public Repos</div>
-						<div className='stat-value pr-5 text-2xl md:text-3xl'>
-							{public_repos}
-						</div>
-					</div>
-					{/* Public Gists */}
-					<div className='stat'>
-						<div className='stat-figure text-purple-900'>
-							<FaStore className='text-3xl md:text-5xl' />
-						</div>
-						<div className='stat-title pr-5'>Public Gists</div>
-						<div className='stat-value pr-5 text-2xl md:text-3xl'>
-							{public_gists}
-						</div>
-					</div>
-				</div>
-
+				<UserStats
+					followers={followers}
+					following={following}
+					public_repos={public_repos}
+					public_gists={public_gists}
+				/>
+				{/* Profile repositories ui */}
 				<RepoList repos={repos} />
 			</div>
 		</>
