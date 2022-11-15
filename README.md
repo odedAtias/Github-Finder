@@ -1,6 +1,6 @@
 # Github-Finder 🔎
 
-A project to create a user search engine on Github.
+A project to create a  search engine Github users.
 
 ![GithubFinder](GithubFinder.png)
 
