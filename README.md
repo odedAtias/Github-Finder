@@ -34,6 +34,10 @@ A project to create a  search engine Github users.
 
 🔹 React icons.
 
+## Database I used
+
+🔹 Github API.
+
 ## Usage
 
 ```
